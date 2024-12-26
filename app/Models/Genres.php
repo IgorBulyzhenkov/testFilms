@@ -14,4 +14,9 @@ class Genres extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function films(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Films::class, 'film_genre', 'fk_genre', 'fk_film');
+    }
 }
