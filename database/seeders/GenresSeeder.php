@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Genres;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Api\Genres;
 use Illuminate\Database\Seeder;
 
 class GenresSeeder extends Seeder

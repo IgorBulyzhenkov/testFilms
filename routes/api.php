@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\FilmsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('/v1')->group(function (){
+    Route::prefix('films')->group(function (){
+        Route::get('/',                     [FilmsController::class, 'showAll']);
+        Route::get('/{id}',                 [FilmsController::class, 'show']);
+
+        Route::post('/store',               [FilmsController::class, 'store']);
+        Route::post('/update/{id}',          [FilmsController::class, 'update']);
+
+        Route::put('/public/{id}',          [FilmsController::class, 'public']);
+        Route::put('/un-public/{id}',       [FilmsController::class, 'unPublic']);
+
+        Route::delete('/destroy/{id}',      [FilmsController::class, 'destroy']);
+    });
 });

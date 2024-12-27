@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\FilmGenre;
-use App\Models\Films;
-use App\Models\Genres;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Api\FilmGenre;
+use App\Models\Api\Films;
+use App\Models\Api\Genres;
 use Illuminate\Database\Seeder;
 
 class FilmsSeeder extends Seeder
@@ -78,7 +77,7 @@ class FilmsSeeder extends Seeder
                 $res    = Films::query()->insertGetId([
                     'name'              => $film['name'],
                     'status_published'  => $film['status_published'],
-                    'link_poster'       => $film['link_poster']
+                    'link_poster'       => asset($film['link_poster'])
                 ]);
 
                 $genre  = Genres::query()
