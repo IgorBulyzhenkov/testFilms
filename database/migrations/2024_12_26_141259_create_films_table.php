@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('status_published', ['0', '1'])->default('0');
-            $table->string('link_poster');
+            $table->string('link_poster')->nullable();
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,9 @@ class Films extends Model
 {
     use HasFactory;
 
-    protected $table = 'films';
+    protected $table    = 'films';
+
+    public $timestamps  = false;
 
     protected $fillable = [
         'name',
@@ -22,15 +24,4 @@ class Films extends Model
         return $this->belongsToMany(Genres::class, 'film_genre', 'fk_film', 'fk_genre');
     }
 
-//    protected static function boot()
-//    {
-//        static::created(function ($model) {
-//            $randomGenre = Genres::inRandomOrder()->first();
-//            if ($randomGenre) {
-//                $model->genres()->attach($randomGenre->id);
-//            }
-//        });
-//
-//        parent::boot();
-//    }
 }

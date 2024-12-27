@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Api;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,9 @@ class Genres extends Model
 {
     use HasFactory;
 
-    protected $table = 'genres';
+    protected $table    = 'genres';
+
+    public $timestamps  = false;
 
     protected $fillable = [
         'name'
