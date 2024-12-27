@@ -37,7 +37,7 @@ class GenresServices
                 'curren_page'   => $genres->currentPage()
             ],
             'message' => 'Genres retrieved successfully.'
-        ]);
+        ], 200);
     }
 
     public function storeGenres($genre): \Illuminate\Http\JsonResponse

@@ -27,7 +27,6 @@ class FilmsServices
         return response()->json([
             'status'    => true,
             'data'      => [
-                'current_page'  => $films->currentPage(),
                 'data'          => $films->map(function ($film) {
                     return [
                         'id'            => $film->id,
@@ -36,13 +35,13 @@ class FilmsServices
                         'genres'        => $film->genres->pluck('name'),
                     ];
                 }),
+                'current_page'  => $films->currentPage(),
                 'limit'         => $films->perPage(),
                 'total'         => $films->total(),
-                'last_page'     => $films->lastPage(),
-                'curren_page'   => $films->currentPage()
+                'last_page'     => $films->lastPage()
             ],
             'message' => 'Films retrieved successfully.'
-        ]);
+        ], 200);
     }
 
     public function showFilms($id): \Illuminate\Http\JsonResponse
