@@ -19,6 +19,9 @@ class FilmsServices
 
         $films = Films::query()
             ->with('genres')
+            ->where([
+                'status_published' => '1'
+            ])
             ->paginate($perPage);
 
         return response()->json([
@@ -68,12 +71,10 @@ class FilmsServices
     {
         try{
             DB::beginTransaction();
-            $request = new FilmPostRequest();
 
-            $rules = $request->rules();
-            $messages = $request->messages();
-
-            $validator = Validator::make($film->all(), $rules, $messages);
+            $request    = new FilmPostRequest();
+            $rules      = $request->rules();
+            $validator  = Validator::make($film->all(), $rules);
 
             if ($validator->fails()) {
                 return response()->json([
@@ -87,7 +88,7 @@ class FilmsServices
             $filmModel =	new Films();
 
             $filmModel->fill([
-                'name'          => $film->name
+                'name'  => $film->name
             ]);
 
             if(!$film->hasFile('link_poster')){
